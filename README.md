@@ -1,0 +1,1 @@
+# maya-vertex-lock
