@@ -26,7 +26,7 @@ class VertexLockUI(MayaQWidgetBaseMixin, QtWidgets.QWidget):
 
         self.create_widget()
         self.create_layout()
-        self.resize(250, 100)
+        self.resize(250, self.sizeHint().height())
 
     def create_widget(self):
         self.requirement_label = QtWidgets.QLabel()
@@ -45,17 +45,29 @@ class VertexLockUI(MayaQWidgetBaseMixin, QtWidgets.QWidget):
         self.lock_button.setText("Lock Vertex")
         self.lock_button.clicked.connect(self.on_lock_button_clicked)
 
+        self.lock_all_button = QtWidgets.QPushButton()
+        self.lock_all_button.setObjectName("lock_all_button")
+        self.lock_all_button.setText("Lock All Vertex")
+        self.lock_all_button.clicked.connect(self.on_lock_all_button_clicked)
+
         self.unlock_button = QtWidgets.QPushButton()
         self.unlock_button.setObjectName("unlock_button")
         self.unlock_button.setText("Unlock Vertex")
         self.unlock_button.clicked.connect(self.on_unlock_button_clicked)
+
+        self.unlock_all_button = QtWidgets.QPushButton()
+        self.unlock_all_button.setObjectName("unlock_all_button")
+        self.unlock_all_button.setText("Unlock All Vertex")
+        self.unlock_all_button.clicked.connect(self.on_unlock_all_button_clicked)
 
     def create_layout(self):
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.requirement_label)
         layout.addWidget(self.toggle_button)
         layout.addWidget(self.lock_button)
+        layout.addWidget(self.lock_all_button)
         layout.addWidget(self.unlock_button)
+        layout.addWidget(self.unlock_all_button)
         self.setLayout(layout)
 
     def on_toggle_button_clicked(self):
@@ -64,8 +76,14 @@ class VertexLockUI(MayaQWidgetBaseMixin, QtWidgets.QWidget):
     def on_lock_button_clicked(self):
         mvl.lock_vertex_lock()
 
+    def on_lock_all_button_clicked(self):
+        mvl.lock_all_vertex_lock()
+
     def on_unlock_button_clicked(self):
         mvl.unlock_vertex_lock()
+
+    def on_unlock_all_button_clicked(self):
+        mvl.unlock_all_vertex_lock()
 
 
 def execute():
